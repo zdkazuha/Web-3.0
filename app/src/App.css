@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  width: 350px;
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+button {
+  border: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.2s;
+}
+
+.join {
+  background: #4caf50;
+  color: white;
+}
+
+.view {
+  background: #2196f3;
+  color: white;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+.result {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+h1, p, .result {
+  color: black;
+}
+
+.layout {
+  display: flex;
+}
+
+.memberList {
+  background: white;
+  margin: 40px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  width: 200px;
+}
+
+.member {
+  background: #ddd6d6;
+  border-radius: 12px;
+  color: #333;
+  padding: 8px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.winner {
+  background: #ddd6d6;
+  border-radius: 10px;
+  height: 25px;
+  width: 250px;
+  margin-left: 50px;
+  margin-top: 20px;
+}
+
+.winner > p {
+  margin-top: 15px;
+  color: white;
+}
