@@ -2,10 +2,62 @@ import { BrowserProvider, Contract, ethers, Signer } from "ethers";
 
 const contractAddress = "0x662E2624b641A74A116E15756ca03389E4d189Ec"; // Replace with your contract address
 const abi = [
-        {
+{
       "inputs": [],
       "stateMutability": "nonpayable",
       "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "getBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getMembers",
+      "outputs": [
+        {
+          "internalType": "address payable[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getWinner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "join",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
     },
     {
       "inputs": [],
@@ -18,8 +70,7 @@ const abi = [
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -38,8 +89,7 @@ const abi = [
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -52,63 +102,7 @@ const abi = [
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
-    },
-    {
-      "inputs": [],
-      "name": "join",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "payable",
-      "type": "function",
-      "payable": true
-    },
-    {
-      "inputs": [],
-      "name": "getBalance",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
-    },
-    {
-      "inputs": [],
-      "name": "getWinner",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "nonpayable",
       "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getMembers",
-      "outputs": [
-        {
-          "internalType": "address payable[]",
-          "name": "",
-          "type": "address[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
     }
   ];
 
@@ -183,3 +177,13 @@ export const getWinner = async (): Promise<string | void> => {
     return await contract.winner();
   });
 };
+
+export const getBalance = async (): Promise<string | undefined> => {
+  return await withContract(async (contract) => {
+    const balanceWei = await contract.getBalance();
+    
+    const balanceEth = ethers.formatEther(balanceWei);
+    
+    return balanceEth;
+  });
+}

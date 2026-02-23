@@ -1,16 +1,20 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 
-import { join, getWinner, getMembers } from './blockchainUtils';
+import { join, getWinner, getMembers, getBalance } from './blockchainUtils';
 
 function App() {
+  const [balance, setBalance] = useState("");
   const [message, setMessage] = useState("");
   const [members, setMembers] = useState([]);
 
   const Join = async () => {
     await join();       
     const updated = await getMembers();   
-    if (updated) setMembers(updated);    
+    if (updated) 
+      setMembers(updated);
+    if (message != '')
+      setMessage('');
   };
 
   const Winner = async () => {
@@ -21,6 +25,13 @@ function App() {
     if (winner) {
       setMessage(`Winner is ${winner}`);
     }
+  };
+
+  const Balance = async () => {
+    const getbalance = await getBalance();       
+    if (getbalance) 
+      setBalance(getbalance);  
+      setMessage(`Balance is ${getbalance}`);  
   };
 
   useEffect(() => {
@@ -47,6 +58,10 @@ function App() {
       <div className="buttons">
         <button className="join" onClick={Join}>
           Join to lottery
+        </button>
+
+        <button className="view" onClick={Balance}>
+          View Balance
         </button>
 
         <button className="view" onClick={Winner}>
